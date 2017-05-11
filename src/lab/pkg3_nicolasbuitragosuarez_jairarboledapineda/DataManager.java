@@ -249,7 +249,11 @@ public class DataManager {
     public void librosMulta(){
        Nodo3 P = ejemplares.getPTR();
        while(P!=null){
-//           if(P.getLibro())
+           Fecha f = new Fecha("0/0/0");
+           f.devolucion(new Date());
+//           if(f.diferencia()){
+               
+//           }
        }
        
     }
