@@ -5,6 +5,7 @@
  */
 package lab.pkg3_nicolasbuitragosuarez_jairarboledapineda;
 
+import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DA
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DLibro;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.fechaDev;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.EscogerLibro.tblEscogerLibro;
+import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.tblLibroMulta;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblAutor;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblLibro;
 
@@ -247,15 +249,22 @@ public class DataManager {
     }
     
     public void librosMulta(){
+       LibrosMulta  librosMulta = new LibrosMulta(null,true);
+       librosMulta.setLocationRelativeTo(null);
+       librosMulta.setResizable(false);
        Nodo3 P = ejemplares.getPTR();
+       DefaultTableModel model = (DefaultTableModel) tblLibroMulta.getModel();
        while(P!=null){
-           Fecha f = new Fecha("0/0/0");
-           f.devolucion(new Date());
-//           if(f.diferencia()){
-               
-//           }
+           int m = (int) libro.getFechaDevolucion().diferencia(getFecha(new Date()));
+           if (m > 0 && !P.getLibro().isEstado()) {
+               m = m * 1000;
+               model.addRow(new Object[]{P.getLibro().getCodigo(),P.getLibro().getTitulo(),P.getLibro().getAutor(),P.getLibro().getFechaDevolucion().getFecha(), m});
+               //m = m * 1000;
+               //JOptionPane.showMessageDialog(null, "La fecha de devolucion ha expirado. Tiene una multa de $" + m + ".", "Atencion", 1);
+           }
+           P = P.getRlink();
        }
-       
+       librosMulta.setVisible(true);
     }
     
     
