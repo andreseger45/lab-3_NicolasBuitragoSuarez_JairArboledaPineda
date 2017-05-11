@@ -51,6 +51,7 @@ public class Fecha {
 
     }
     
+    
     public String getFecha(){
         String dia,mes;
         if(this.dia<10) {dia = "0"+this.dia;}else{dia = Integer.toString(this.dia);}
@@ -59,7 +60,7 @@ public class Fecha {
     }
     
     public long diferencia(Fecha fechaHoy) {
-        final long MILLSECS_PER_DAY = 24 * 60 * 60 * 1000; //Milisegundos al día 
+        final long MILLSECS_PER_DAY = 24 * 60 * 60 * 1000; //Milisegundos en un día 
 //        java.util.Date hoy = new Date(); //Fecha de hoy 
 
 //        int año = 2017, mes = 5, dia = 14; //Fecha devolucion
@@ -69,8 +70,7 @@ public class Fecha {
         java.sql.Date hoy = new java.sql.Date(calendarh.getTimeInMillis());
         
         long diferencia = (hoy.getTime() - devolucion.getTime()) / MILLSECS_PER_DAY;
-//        if(diferencia<0) diferencia--;
-        System.out.println("diferencia = "+diferencia);
+//        System.out.println("diferencia = "+diferencia);
         return diferencia;
     }
     

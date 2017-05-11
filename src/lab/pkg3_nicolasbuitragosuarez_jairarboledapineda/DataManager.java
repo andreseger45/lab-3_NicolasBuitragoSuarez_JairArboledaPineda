@@ -5,6 +5,8 @@
  */
 package lab.pkg3_nicolasbuitragosuarez_jairarboledapineda;
 
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DAutor;
@@ -137,7 +139,7 @@ public class DataManager {
     private int codigoAfiliado;
     
     public void escogerDLibro(int cod){
-        codigoAfiliado=cod;
+        codigoAfiliado = cod;
         EscogerLibro escLibro = new EscogerLibro(null,true,false);
         escLibro.setLocationRelativeTo(null);
         escLibro.setResizable(false);
@@ -149,7 +151,7 @@ public class DataManager {
             if (P.getAfiliado().getCodigo() == cod) {
                 Nodo2 Q = P.getLink1();
                 while(Q!=null){
-                    model.addRow(new Object[] {Q.getLibro().getCodigo(),Q.getLibro().getTitulo(),Q.getLibro().getAutor()});
+                    model.addRow(new Object[] {Q.getLibro().getCodigo(),Q.getLibro().getTitulo(),Q.getLibro().getAutor(),Q.getLibro().getFechaDevolucion().getFecha()});
                     Q = Q.getLink3();
                 }
                 break;
@@ -174,11 +176,6 @@ public class DataManager {
             }
             P = P.getLink2();
         }
-        
-        Dlibro = ejemplares.getInfoPos(pos).getLibro();
-        if(!Dlibro.isEstado()){
-            getLibro(pos+1);
-        }
     }
     
     public void setDLibro(){
@@ -192,36 +189,53 @@ public class DataManager {
         Nodo3 P = ejemplares.getPTR();
         while(P!=null){
             if(P.getLibro().equals(Dlibro)||P.getLibro().getCodigo()==Dlibro.getCodigo()){
-                if(P.getLibro().isEstado()){
-                    P.getLibro().setEstado(false);
-                    Fecha f = new Fecha(new java.text.SimpleDateFormat("dd/MM/yyyy").format(fecha));
-                    P.getLibro().setFechaDevolucion(f.devolucion((java.util.Date) fecha));
-                    P.getLibro().setCodigoAfiliado(codAfiliado);
-                    devolverLibro(codAfiliado,P.getLibro());
+                if(!P.getLibro().isEstado()){
+                    devolverLibro(codAfiliado,P.getLibro(), fecha);
+                    P.getLibro().setEstado(true);
+                    P.getLibro().setFechaDevolucion(new Fecha(0,0,0000));
+                    P.getLibro().setCodigoAfiliado(-1);
+                    
                     return true;
                 }else{
-                    JOptionPane.showMessageDialog(null, "El libro que inteta prestar no se encuentra disponible.", "Error", 0);
+                    JOptionPane.showMessageDialog(null, "El libro que inteta entregar no se encuentra disponible.", "Error", 0);
                 }
                 break;
             }
             P=P.getRlink();
         }
         if(P==null){
-            JOptionPane.showMessageDialog(null, "El libro que inteta prestar no existe en nuestro inventario.", "Error", 0);
+            JOptionPane.showMessageDialog(null, "El libro que inteta entregar no existe en nuestro inventario.", "Error", 0);
         }return false;
     }
     
-    public void devolverLibro(int cod,Libro libro){
+    
+    public Fecha getFecha (Date fecha) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+        return new Fecha(new java.text.SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime()));
+    }
+    
+    public void devolverLibro(int cod,Libro libro,java.util.Date fecha){
         Nodo P = afiliados.getPTR();
         while(P!=null){
             if (P.getAfiliado().getCodigo() == cod) {
-                Nodo2 Q = P.getLink1();
+                Nodo2 Q = P.getLink1(), anteq = null;
                 while(Q!=null){
                     if(Q.getLibro().equals(libro)||Q.getLibro().getCodigo()==libro.getCodigo()){
-                        
+                        if(Q.equals(P.getLink1())){
+                            P.setLink1(Q.getLink3());
+                        }else{
+                            if(anteq!=null) anteq.setLink3(Q.getLink3());
+                        }
                         break;
                     }
+                    anteq = Q;
                     Q = Q.getLink3();
+                }
+                int m = (int)libro.getFechaDevolucion().diferencia(getFecha(fecha));
+                if(m>0){
+                    m=m*1000;
+                    JOptionPane.showMessageDialog(null, "La fecha de devolucion ha expirado. Tiene una multa de $"+m+".", "Atencion", 1);
                 }
                 break;
             }
@@ -237,14 +251,5 @@ public class DataManager {
        
     }
     
-    public void afiliadosMulta(){
-        Nodo P = afiliados.getPTR();
-        while(P!=null){
-            if(P.getAfiliado().getMulta()>0){
-                
-            }
-            P=P.getLink2();
-        }
-    }
     
 }

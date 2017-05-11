@@ -109,20 +109,26 @@ public class AgregarUsuario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(nombre.getText().equals("")||codigo.getText().equals("")||telefono.getText().equals("")){
+        try {
+            if(nombre.getText().equals("")||codigo.getText().equals("")||telefono.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Ninguno de los campos puede estar vacio.", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
-            if(isNumeric(codigo.getText())&&isNumeric(telefono.getText())&&!contieneNumero(nombre.getText())){
+            if(isNumeric(codigo.getText())&&Integer.parseInt(codigo.getText())>0&&isNumeric(telefono.getText())&&!contieneNumero(nombre.getText())){
                 dm.afiliados.addAfiliado(new Afiliado(Integer.parseInt(codigo.getText()),nombre.getText(),Integer.parseInt(telefono.getText())));dm.afiliados.imprimir();
                 this.dispose();
             }else{
                 nombre.setText("");
                 codigo.setText("");
                 telefono.setText("");
-                JOptionPane.showMessageDialog(null, "Hay un problema con los datos ingresados. Intentelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Hubo un problema con los datos ingresados. Intentelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
-        }  
+        } 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Hubo un problema con los datos ingresados. Intentelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        }
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static boolean isNumeric(String str) {

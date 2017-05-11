@@ -113,7 +113,7 @@ public class AgregarLibro extends javax.swing.JDialog {
         if(titulo.getText().equals("")||codigo.getText().equals("")||autor.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Ninguno de los campos puede estar vacio.", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
-            if(isNumeric(codigo.getText())&&!contieneNumero(autor.getText())&&!contieneNumero(titulo.getText())){
+            if(isNumeric(codigo.getText())&&Integer.parseInt(codigo.getText())>0&&!contieneNumero(autor.getText())&&!contieneNumero(titulo.getText())){
                 dm.agregarLibro(new Libro(Integer.parseInt(codigo.getText()),titulo.getText(),autor.getText()));
 //                dm.autores.imprimir();
                 dm.ejemplares.imprimir();

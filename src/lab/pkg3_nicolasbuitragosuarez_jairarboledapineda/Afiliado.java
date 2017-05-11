@@ -13,13 +13,11 @@ public class Afiliado {
     private final int codigo;
     private final String nombre;
     private int numTelefono;
-    private int multa;
 
     public Afiliado(int codigo, String nombre, int numTelefono) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.numTelefono = numTelefono;
-        this.multa = 0;
     }
 
     public int getCodigo() {
@@ -36,14 +34,6 @@ public class Afiliado {
 
     public void setNumTelefono(int numTelefono) {
         this.numTelefono = numTelefono;
-    }
-
-    public int getMulta() {
-        return multa;
-    }
-
-    public void setMulta(int multa) {
-        this.multa = multa;
     }
     
 }

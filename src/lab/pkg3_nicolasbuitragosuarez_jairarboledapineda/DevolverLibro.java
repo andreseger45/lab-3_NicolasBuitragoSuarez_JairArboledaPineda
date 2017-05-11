@@ -55,9 +55,9 @@ public class DevolverLibro extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Prestar libro");
+        setTitle("Entregar libro");
 
-        jButton1.setText("Prestar libro");
+        jButton1.setText("Entregar libro");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -158,7 +158,7 @@ public class DevolverLibro extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "El codigo de afiliado que ingreso no existe.", "Error", 0);
                 codigo.setText("");
             } else {
-                dm.prestarLibro(Integer.parseInt(codigo.getText()), (java.util.Date) fecha.getValue());
+                dm.devolverLibro(Integer.parseInt(codigo.getText()), (java.util.Date) fecha.getValue());
                 dm.ejemplares.imprimir();
                 dm.afiliados.imprimir();
                 System.out.println("__________________________");

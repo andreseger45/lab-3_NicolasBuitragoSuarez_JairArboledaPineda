@@ -6,6 +6,7 @@
 package lab.pkg3_nicolasbuitragosuarez_jairarboledapineda;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.Lab3_NicolasBuitragoSuarez_JairArboledaPineda.dm;
 
 /**
@@ -22,6 +23,10 @@ public class EscogerLibro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.sw=sw;
+        if(!sw){
+            DefaultTableModel model = (DefaultTableModel) tblEscogerLibro.getModel();
+            model.addColumn("Fecha dev.", new Object[]{});
+        }
     }
     
     /**
@@ -109,7 +114,7 @@ public class EscogerLibro extends javax.swing.JDialog {
                 if(sw){
                     dm.getLibro(row);
                 }else{
-                    dm.getDLibro(row);System.out.println("row = "+row);
+                    dm.getDLibro(row);
                 }
             }
         } catch (Exception e) {

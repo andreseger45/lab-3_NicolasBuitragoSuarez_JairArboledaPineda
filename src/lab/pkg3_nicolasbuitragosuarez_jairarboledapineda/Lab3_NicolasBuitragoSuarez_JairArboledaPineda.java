@@ -18,16 +18,21 @@ public class Lab3_NicolasBuitragoSuarez_JairArboledaPineda {
             e.printStackTrace();
         }
         
-        dm.afiliados.addAfiliado(new Afiliado(82260,"Prueba",4));
-        dm.afiliados.addAfiliado(new Afiliado(82258,"Buitrago",2));
+        dm.afiliados.addAfiliado(new Afiliado(82260,"Luis",4));
+        dm.afiliados.addAfiliado(new Afiliado(82258,"Carlos",2));
         dm.afiliados.addAfiliado(new Afiliado(82257,"Nicolas",1));
-        dm.afiliados.addAfiliado(new Afiliado(82259,"Suarez",3));
+        dm.afiliados.addAfiliado(new Afiliado(82259,"Maria",3));
         
         dm.agregarLibro(new Libro(1234,"Exodo","Leon Uris"));
         dm.agregarLibro(new Libro(5678,"Rayuela","Julio Cortazar"));
-        dm.agregarLibro(new Libro(9101,"El mundo y sus demonios","Carl Sagan")); 
+        dm.agregarLibro(new Libro(3101,"El mundo y sus demonios","Carl Sagan"));
+        dm.agregarLibro(new Libro(9287,"El principe","Nicolas Maquiavelo"));
+        dm.agregarLibro(new Libro(2137,"Cien años de soledad","Gabriel Garcia"));
+        dm.getLibro(0);
+        dm.prestarLibro(82257, new java.util.Date(117,4,4));
         
-        Fecha f = new Fecha("10/05/2017");f.diferencia(new Fecha(14,05,2017));
+        
+//        Fecha f = new Fecha("10/05/2017");f.diferencia(new Fecha(14,05,2017));
 //        System.out.println("f= "+f.getDia()+" + "+f.getMes()+" + "+f.getAño());
         
 //        dm.afiliados.imprimir();
