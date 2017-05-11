@@ -109,7 +109,7 @@ public class EscogerLibro extends javax.swing.JDialog {
                 if(sw){
                     dm.getLibro(row);
                 }else{
-                    dm.getDLibro(row);
+                    dm.getDLibro(row);System.out.println("row = "+row);
                 }
             }
         } catch (Exception e) {

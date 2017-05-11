@@ -134,7 +134,10 @@ public class DataManager {
     
     public Libro Dlibro = null;
     
+    private int codigoAfiliado;
+    
     public void escogerDLibro(int cod){
+        codigoAfiliado=cod;
         EscogerLibro escLibro = new EscogerLibro(null,true,false);
         escLibro.setLocationRelativeTo(null);
         escLibro.setResizable(false);
@@ -157,8 +160,23 @@ public class DataManager {
     }
     
     public void getDLibro(int pos){
+        Nodo P = afiliados.getPTR(); int i = 0;
+        while(P!=null){
+            if (P.getAfiliado().getCodigo() == codigoAfiliado) {
+                Nodo2 Q = P.getLink1();
+                while(Q!=null){
+                    if(i==pos){
+                        Dlibro = Q.getLibro();
+                    }
+                    Q = Q.getLink3();i++;
+                }
+                break;
+            }
+            P = P.getLink2();
+        }
+        
         Dlibro = ejemplares.getInfoPos(pos).getLibro();
-        if(Dlibro.isEstado()){
+        if(!Dlibro.isEstado()){
             getLibro(pos+1);
         }
     }
@@ -173,7 +191,7 @@ public class DataManager {
     public boolean devolverLibro(int codAfiliado, java.util.Date fecha){
         Nodo3 P = ejemplares.getPTR();
         while(P!=null){
-            if(P.getLibro().equals(libro)||P.getLibro().getCodigo()==libro.getCodigo()){
+            if(P.getLibro().equals(Dlibro)||P.getLibro().getCodigo()==Dlibro.getCodigo()){
                 if(P.getLibro().isEstado()){
                     P.getLibro().setEstado(false);
                     Fecha f = new Fecha(new java.text.SimpleDateFormat("dd/MM/yyyy").format(fecha));
