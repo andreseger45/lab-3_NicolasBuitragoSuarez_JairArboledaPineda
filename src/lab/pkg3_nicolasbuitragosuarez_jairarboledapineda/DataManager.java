@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DAutor;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DLibro;
+import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.fechaDev;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.EscogerLibro.tblEscogerLibro;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblAutor;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblLibro;
@@ -181,8 +182,10 @@ public class DataManager {
     public void setDLibro(){
         DLibro.setText(Dlibro.getTitulo());
         DAutor.setText(Dlibro.getAutor());
+        fechaDev.setText(Dlibro.getFechaDevolucion().getFecha());
         DAutor.setVisible(true);
         DLibro.setVisible(true);
+        fechaDev.setVisible(true);
     }
     
     public boolean devolverLibro(int codAfiliado, java.util.Date fecha){
