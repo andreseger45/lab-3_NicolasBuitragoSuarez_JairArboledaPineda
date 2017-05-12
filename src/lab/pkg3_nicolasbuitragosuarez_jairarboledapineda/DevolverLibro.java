@@ -75,7 +75,7 @@ public class DevolverLibro extends javax.swing.JDialog {
 
         DAutor.setText("jLabel4");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/books-img.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/books-get-img.png"))); // NOI18N
 
         jButton2.setText("Escoger libro");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
