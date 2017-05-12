@@ -28,6 +28,8 @@ public class Lab3_NicolasBuitragoSuarez_JairArboledaPineda {
         dm.agregarLibro(new Libro(3101,"El mundo y sus demonios","Carl Sagan"));
         dm.agregarLibro(new Libro(9287,"El principe","Nicolas Maquiavelo"));
         dm.agregarLibro(new Libro(2137,"Cien años de soledad","Gabriel Garcia"));
+        dm.agregarLibro(new Libro(5643,"Todos los nombres","Jose Saramago"));
+        dm.agregarLibro(new Libro(2735,"El nombre de la rosa","Umberto Eco"));
         dm.getLibro(0);
         dm.prestarLibro(82257, new java.util.Date(117,4,4));
         

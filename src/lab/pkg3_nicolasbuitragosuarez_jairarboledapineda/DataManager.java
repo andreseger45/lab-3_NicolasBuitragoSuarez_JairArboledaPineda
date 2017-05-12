@@ -17,6 +17,7 @@ import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.EscogerLibro.tbl
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.tblLibroMulta;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblAutor;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblLibro;
+import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.VerAfiliados.tblAfiliados;
 
 /**
  *
@@ -88,11 +89,6 @@ public class DataManager {
                 k++;
             }
         }
-        
-//        libro = ejemplares.getInfoPos(pos).getLibro();
-//        if(!libro.isEstado()){
-//            getLibro(pos+1);
-//        }
     }
     
     public void setLibro(){
@@ -278,5 +274,20 @@ public class DataManager {
        librosMulta.setVisible(true);
     }
     
+    public void verAfiliados (){
+        VerAfiliados verAfiliados = new VerAfiliados(null,true);
+        verAfiliados.setLocationRelativeTo(null);
+        verAfiliados.setResizable(false);
+        
+        DefaultTableModel model = (DefaultTableModel) tblAfiliados.getModel();
+        Nodo P = afiliados.getPTR();
+        for (int i = 0; i < afiliados.getTamaño(); i++) {
+            model.addRow(new Object[]{P.getAfiliado().getCodigo(),P.getAfiliado().getNombre(),P.getAfiliado().getNumTelefono()});
+            P = P.getLink2();
+        }
+        
+        verAfiliados.setVisible(true);
+        
+    }
     
 }
