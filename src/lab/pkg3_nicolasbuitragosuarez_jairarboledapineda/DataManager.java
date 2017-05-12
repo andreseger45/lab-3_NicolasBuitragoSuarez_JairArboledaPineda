@@ -59,7 +59,7 @@ public class DataManager {
             }
     }
     
-    public void escogerLibro(){
+    public void escogerLibro(int cod){
         EscogerLibro escLibro = new EscogerLibro(null,true,true);
         escLibro.setLocationRelativeTo(null);
         escLibro.setResizable(false);
@@ -78,10 +78,21 @@ public class DataManager {
     public Libro libro = null;
     
     public void getLibro(int pos){
-        libro = ejemplares.getInfoPos(pos).getLibro();
-        if(!libro.isEstado()){
-            getLibro(pos+1);
+        int k = 0;
+        for (int i = 0; i < ejemplares.getTamaño(); i++) {
+            if(ejemplares.getInfoPos(i).getLibro().isEstado()){
+                
+                if(k==pos){
+                    libro = ejemplares.getInfoPos(i).getLibro();
+                }
+                k++;
+            }
         }
+        
+//        libro = ejemplares.getInfoPos(pos).getLibro();
+//        if(!libro.isEstado()){
+//            getLibro(pos+1);
+//        }
     }
     
     public void setLibro(){

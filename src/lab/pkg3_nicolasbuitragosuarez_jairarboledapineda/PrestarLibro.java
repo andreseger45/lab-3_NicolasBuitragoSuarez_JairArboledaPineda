@@ -189,7 +189,23 @@ public class PrestarLibro extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        dm.escogerLibro();
+        try {
+            if (dm.isNumeric(codigo.getText())) {
+                if (!dm.verificarCodigo(Integer.parseInt(codigo.getText()))) {
+                    JOptionPane.showMessageDialog(null, "El codigo de afiliado que ingreso no existe.", "Error", 0);
+                    codigo.setText("");
+
+                } else {
+                    dm.escogerLibro(Integer.parseInt(codigo.getText()));
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El codigo solo debe estar comformado por numeros. Intentelo de nuevo.", "Error", 0);
+                codigo.setText("");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Hubo un problema con los datos ingresados. Intentelo de nuevo.", "Error", 0);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
