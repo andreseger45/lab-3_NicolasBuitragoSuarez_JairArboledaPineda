@@ -18,10 +18,11 @@ public class Lab3_NicolasBuitragoSuarez_JairArboledaPineda {
             e.printStackTrace();
         }
         
-        dm.afiliados.addAfiliado(new Afiliado(82260,"Luis",4));
-        dm.afiliados.addAfiliado(new Afiliado(82258,"Carlos",2));
-        dm.afiliados.addAfiliado(new Afiliado(82257,"Nicolas",1));
-        dm.afiliados.addAfiliado(new Afiliado(82259,"Maria",3));
+        dm.afiliados.addAfiliado(new Afiliado(82260,"Luis Perez",3738262));
+        dm.afiliados.addAfiliado(new Afiliado(92258,"Carlos Yepez",3826374));
+        dm.afiliados.addAfiliado(new Afiliado(82257,"Nicolas Buitrago",3569374));
+        dm.afiliados.addAfiliado(new Afiliado(92259,"Maria Consuegra",3459812));
+        dm.afiliados.addAfiliado(new Afiliado(82835,"Jair Arboleda",3459812));
         
         dm.agregarLibro(new Libro(1234,"Exodo","Leon Uris"));
         dm.agregarLibro(new Libro(5678,"Rayuela","Julio Cortazar"));
@@ -32,6 +33,10 @@ public class Lab3_NicolasBuitragoSuarez_JairArboledaPineda {
         dm.agregarLibro(new Libro(2735,"El nombre de la rosa","Umberto Eco"));
         dm.getLibro(0);
         dm.prestarLibro(82257, new java.util.Date(117,4,4));
+        dm.getLibro(0);
+        dm.prestarLibro(92258, new java.util.Date(117,3,2));
+        dm.getLibro(1);
+        dm.prestarLibro(82835, new java.util.Date(117,4,6));
         
         
 //        Fecha f = new Fecha("10/05/2017");f.diferencia(new Fecha(14,05,2017));

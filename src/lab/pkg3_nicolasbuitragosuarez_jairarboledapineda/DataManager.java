@@ -14,7 +14,10 @@ import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DA
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DLibro;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.fechaDev;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.EscogerLibro.tblEscogerLibro;
+import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.codigoM;
+import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.nombreM;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.tblLibroMulta;
+import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.telefonoM;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblAutor;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblLibro;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.VerAfiliados.tblAfiliados;
@@ -272,6 +275,29 @@ public class DataManager {
            P = P.getRlink();
        }
        librosMulta.setVisible(true);
+    }
+    
+    public void mostrarUsuarioMulta(int pos){
+        int i = 0;
+        Nodo3 P = ejemplares.getPTR();
+        while (P != null) {
+            int m = (int) libro.getFechaDevolucion().diferencia(getFecha(new Date()));
+            if (m > 0 && !P.getLibro().isEstado()) {
+                if (i == pos) {
+                    Nodo Q = afiliados.getPTR();
+                    while (Q != null) {
+                        if (Q.getAfiliado().getCodigo() == P.getLibro().getCodigoAfiliado()) {
+                            codigoM.setText(Integer.toString(Q.getAfiliado().getCodigo()));
+                            nombreM.setText(Q.getAfiliado().getNombre());
+                            telefonoM.setText(Integer.toString(Q.getAfiliado().getNumTelefono()));
+                        }
+                        Q = Q.getLink2();
+                    }
+                }
+                i++;
+            }
+            P = P.getRlink();
+        }
     }
     
     public void verAfiliados (){

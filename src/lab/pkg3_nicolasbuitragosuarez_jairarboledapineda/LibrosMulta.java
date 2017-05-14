@@ -5,6 +5,9 @@
  */
 package lab.pkg3_nicolasbuitragosuarez_jairarboledapineda;
 
+import javax.swing.JOptionPane;
+import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.Lab3_NicolasBuitragoSuarez_JairArboledaPineda.dm;
+
 /**
  *
  * @author Estudiante
@@ -17,8 +20,6 @@ public class LibrosMulta extends javax.swing.JDialog {
     public LibrosMulta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        
     }
 
     /**
@@ -32,6 +33,17 @@ public class LibrosMulta extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLibroMulta = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        telefonoM = new javax.swing.JLabel();
+        nombreM = new javax.swing.JLabel();
+        codigoM = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,10 +63,38 @@ public class LibrosMulta extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblLibroMulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLibroMultaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblLibroMulta);
         if (tblLibroMulta.getColumnModel().getColumnCount() > 0) {
-            tblLibroMulta.getColumnModel().getColumn(0).setMaxWidth(70);
+            tblLibroMulta.getColumnModel().getColumn(0).setMaxWidth(50);
+            tblLibroMulta.getColumnModel().getColumn(3).setMaxWidth(65);
+            tblLibroMulta.getColumnModel().getColumn(4).setMaxWidth(90);
         }
+
+        jLabel1.setText("Codigo:");
+
+        jLabel2.setText("Nombre:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setText("Información del afiliado con la multa:");
+
+        jLabel4.setText("Num. Telefono:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel5.setText("Seleccione un libro de la tabla para");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel6.setText("poder ver la informacion del afiliado");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel7.setText("y asi comunicarse con él.");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel8.setText("Nota:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,8 +102,28 @@ public class LibrosMulta extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codigoM)
+                            .addComponent(nombreM)
+                            .addComponent(telefonoM)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,10 +131,47 @@ public class LibrosMulta extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel3)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(codigoM))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(nombreM))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(telefonoM))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addGap(45, 45, 45))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    int row;
+    
+    private void tblLibroMultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibroMultaMouseClicked
+        try {
+            row = tblLibroMulta.rowAtPoint(evt.getPoint());
+            if (row >= 0) {
+                dm.mostrarUsuarioMulta(row);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al seleccionar el libro", "Error", 0);
+        }
+    }//GEN-LAST:event_tblLibroMultaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -119,7 +216,18 @@ public class LibrosMulta extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JLabel codigoM;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JLabel nombreM;
     public static javax.swing.JTable tblLibroMulta;
+    public static javax.swing.JLabel telefonoM;
     // End of variables declaration//GEN-END:variables
 }
