@@ -31,16 +31,13 @@ public class Lab3_NicolasBuitragoSuarez_JairArboledaPineda {
         dm.agregarLibro(new Libro(2137,"Cien años de soledad","Gabriel Garcia"));
         dm.agregarLibro(new Libro(5643,"Todos los nombres","Jose Saramago"));
         dm.agregarLibro(new Libro(2735,"El nombre de la rosa","Umberto Eco"));
+        
         dm.getLibro(0);
         dm.prestarLibro(82257, new java.util.Date(117,4,4));
         dm.getLibro(0);
         dm.prestarLibro(92258, new java.util.Date(117,3,2));
         dm.getLibro(1);
         dm.prestarLibro(82835, new java.util.Date(117,4,6));
-        
-        
-//        Fecha f = new Fecha("10/05/2017");f.diferencia(new Fecha(14,05,2017));
-//        System.out.println("f= "+f.getDia()+" + "+f.getMes()+" + "+f.getAño());
         
 //        dm.afiliados.imprimir();
         
