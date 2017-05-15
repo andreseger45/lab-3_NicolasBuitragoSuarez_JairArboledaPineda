@@ -21,6 +21,7 @@ import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.tele
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblAutor;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblLibro;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.VerAfiliados.tblAfiliados;
+import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.VerLibros.tblVerLibros;
 
 /**
  *
@@ -315,5 +316,25 @@ public class DataManager {
         verAfiliados.setVisible(true);
         
     }
+    
+    public void verLibros(){
+        VerLibros verlibros = new VerLibros (null,true);
+        verlibros.setLocationRelativeTo(null);
+        verlibros.setResizable(false);
+        DefaultTableModel model = (DefaultTableModel) tblVerLibros.getModel();
+        Nodo3 P = ejemplares.getPTR();
+        String e;
+        while(P != null){
+            if(P.getLibro().isEstado()){
+                e = "Disponible";
+            }else{
+                e = "No disponible";
+            }
+            model.addRow(new Object[]{P.getLibro().getCodigo(),P.getLibro().getTitulo(),P.getLibro().getAutor(),e});
+            P = P.getRlink();
+        }
+        verlibros.setVisible(true);
+    }
+    
     
 }
