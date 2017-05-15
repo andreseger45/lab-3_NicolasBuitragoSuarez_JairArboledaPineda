@@ -265,7 +265,7 @@ public class DataManager {
        Nodo3 P = ejemplares.getPTR();
        DefaultTableModel model = (DefaultTableModel) tblLibroMulta.getModel();
        while(P!=null){
-           int m = (int) libro.getFechaDevolucion().diferencia(getFecha(new Date()));
+           int m = (int) P.getLibro().getFechaDevolucion().diferencia(getFecha(new Date()));
            if (m > 0 && !P.getLibro().isEstado()) {
                m = m * 1000;
                model.addRow(new Object[]{P.getLibro().getCodigo(),P.getLibro().getTitulo(),P.getLibro().getAutor(),P.getLibro().getFechaDevolucion().getFecha(), m});
