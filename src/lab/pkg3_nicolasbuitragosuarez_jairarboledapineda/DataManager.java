@@ -5,6 +5,12 @@
  */
 package lab.pkg3_nicolasbuitragosuarez_jairarboledapineda;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -13,10 +19,7 @@ import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DA
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.DLibro;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.DevolverLibro.fechaDev;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.EscogerLibro.tblEscogerLibro;
-import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.codigoM;
-import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.nombreM;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.tblLibroMulta;
-import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.LibrosMulta.telefonoM;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblAutor;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.PrestarLibro.lblLibro;
 import static lab.pkg3_nicolasbuitragosuarez_jairarboledapineda.VerAfiliados.tblAfiliados;
@@ -258,47 +261,43 @@ public class DataManager {
         }
     }
     
+    private Afiliado findAfiliado(int cod){
+        Nodo P = afiliados.getPTR();
+        if(verificarCodigo(cod)&&P!=null){
+            while(P!=null){
+                if(P.getAfiliado().getCodigo()==cod){
+                    return P.getAfiliado();
+                }
+                P = P.getLink2();
+            }
+        }else{
+            System.out.println("Error codigo Archivo libros");
+            return null;
+        }
+        return P.getAfiliado();
+    }
+    
     public void librosMulta(){
        LibrosMulta  librosMulta = new LibrosMulta(null,true);
        librosMulta.setLocationRelativeTo(null);
        librosMulta.setResizable(false);
        Nodo3 P = ejemplares.getPTR();
        DefaultTableModel model = (DefaultTableModel) tblLibroMulta.getModel();
+       
        while(P!=null){
            int m = (int) P.getLibro().getFechaDevolucion().diferencia(getFecha(new Date()));
            if (m > 0 && !P.getLibro().isEstado()) {
                m = m * 1000;
-               model.addRow(new Object[]{P.getLibro().getCodigo(),P.getLibro().getTitulo(),P.getLibro().getAutor(),P.getLibro().getFechaDevolucion().getFecha(), m});
+               Afiliado a = findAfiliado(P.getLibro().getCodigoAfiliado());
+               model.addRow(new Object[]{P.getLibro().getCodigo(),P.getLibro().getTitulo(),P.getLibro().getAutor(),P.getLibro().getFechaDevolucion().getFecha(), m,a.getCodigo(),a.getNombre(),a.getNumTelefono()});
                //m = m * 1000;
                //JOptionPane.showMessageDialog(null, "La fecha de devolucion ha expirado. Tiene una multa de $" + m + ".", "Atencion", 1);
            }
            P = P.getRlink();
        }
        librosMulta.setVisible(true);
-    }
-    
-    public void mostrarUsuarioMulta(int pos){
-        int i = 0;
-        Nodo3 P = ejemplares.getPTR();
-        while (P != null) {
-            int m = (int) libro.getFechaDevolucion().diferencia(getFecha(new Date()));
-            if (m > 0 && !P.getLibro().isEstado()) {
-                if (i == pos) {
-                    Nodo Q = afiliados.getPTR();
-                    while (Q != null) {
-                        if (Q.getAfiliado().getCodigo() == P.getLibro().getCodigoAfiliado()) {
-                            codigoM.setText(Integer.toString(Q.getAfiliado().getCodigo()));
-                            nombreM.setText(Q.getAfiliado().getNombre());
-                            telefonoM.setText(Integer.toString(Q.getAfiliado().getNumTelefono()));
-                        }
-                        Q = Q.getLink2();
-                    }
-                }
-                i++;
-            }
-            P = P.getRlink();
-        }
-    }
+    }   
+
     
     public void verAfiliados (){
         VerAfiliados verAfiliados = new VerAfiliados(null,true);
@@ -335,5 +334,135 @@ public class DataManager {
         verlibros.setVisible(true);
     }
     
+    public void getAfiliados() throws IOException{
+        FileReader fra =null;
+        try {
+            File Afiliados = new File("Afiliados.txt");
+            fra = new FileReader(Afiliados);
+            BufferedReader afi = new BufferedReader(fra);
+            String a = afi.readLine();
+            a = afi.readLine();
+            while (a != null) {                
+                String[] c = a.split(",");//System.out.println("c.length = "+c.length);
+                afiliados.addAfiliado(new Afiliado(Integer.parseInt(c[0]),c[1],Integer.parseInt(c[2])));
+                a = afi.readLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Error DataManager getAfiliados =    "+e.getMessage());
+        }finally{
+            try {
+                if (fra != null) {
+                    fra.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
     
+    public Date getDate(Fecha fecha){
+        Date date = new Date(fecha.getAño()-1900,fecha.getMes()-1,fecha.getDia()-4);
+        return date;
+    }
+    
+    public void getLibros() throws IOException{
+        FileReader frl =null;
+        try {
+            File Libros = new File("Libros.txt");
+            frl = new FileReader(Libros);
+            BufferedReader bfl = new BufferedReader(frl);
+            String l = bfl.readLine();
+            l = bfl.readLine();
+            while (l != null) {                
+                String[] c = l.split(",");
+                if(c.length==3){
+                    agregarLibro(new Libro(Integer.parseInt(c[0]),c[1],c[2]));
+                }else{
+                    Libro libro = new Libro(Integer.parseInt(c[0]),c[1],c[2]);
+                    agregarLibro(libro);
+                    this.libro=libro; int cod = Integer.parseInt(c[4]);//System.out.println("C[4] = "+cod);
+                    prestarLibro(Integer.parseInt(c[4]),getDate(new Fecha(c[3])));
+                }
+                l = bfl.readLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Error DataManager getLibros =    "+e.getMessage());
+        }finally{
+            try {
+                if (frl != null) {
+                    frl.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    public void actualizar() {
+        int eleccion = JOptionPane.showOptionDialog(null, "¿Seguro que desea cerrar la aplicacion?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Si", "No"}, "Si");
+        if (eleccion == JOptionPane.YES_OPTION) {
+
+            FileWriter fw = null;
+            try {
+                fw = new FileWriter("Libros.txt", false);
+                PrintWriter pw = new PrintWriter(fw);
+                String linea = "Codigo , Titulo , Autor , Fecha dev. , cod. Afiliado";
+                pw.print(linea);
+                pw.println();
+                for (int i = 0; i < ejemplares.getTamaño(); i++) {
+                    if(ejemplares.getInfoPos(i).getLibro().isEstado()){
+                        linea = Integer.toString(ejemplares.getInfoPos(i).getLibro().getCodigo()) + "," + ejemplares.getInfoPos(i).getLibro().getTitulo()+ "," +
+                            ejemplares.getInfoPos(i).getLibro().getAutor();
+                    }else{
+                    linea = Integer.toString(ejemplares.getInfoPos(i).getLibro().getCodigo()) + "," + ejemplares.getInfoPos(i).getLibro().getTitulo()+ "," +
+                            ejemplares.getInfoPos(i).getLibro().getAutor()+ "," +ejemplares.getInfoPos(i).getLibro().getFechaDevolucion().getFecha()+ "," +Integer.toString(ejemplares.getInfoPos(i).getLibro().getCodigoAfiliado());
+                    }
+                    pw.print(linea);
+                    pw.println();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Error al guardar libros.txt ");
+            } finally {
+                try {
+                    if (fw != null) {
+                        fw.close();
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            
+            fw = null;
+            try {
+                fw = new FileWriter("Afiliados.txt", false);
+                PrintWriter pw = new PrintWriter(fw);
+                String linea = "Codigo , Nombre, Telefono";
+                pw.print(linea);
+                pw.println();
+                Nodo P = afiliados.getPTR();
+                while (P != null) {
+                    linea = Integer.toString(P.getAfiliado().getCodigo())+ "," + P.getAfiliado().getNombre()+ "," + Integer.toString(P.getAfiliado().getNumTelefono());
+                    pw.print(linea);
+                    pw.println();
+                    P = P.getLink2();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Error al guardar el afiliados.txt");
+            } finally {
+                try {
+                    if (fw != null) {
+                        fw.close();
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            System.exit(0);
+        }
+    }
 }

@@ -1,0 +1,8 @@
+Codigo , Nombre, Telefono
+82257,Nicolas Buitrago,3569374
+82260,Luis Perez,3738262
+82835,Jair Arboleda,3459812
+92258,Carlos Yepez,3826374
+92259,Maria Consuegra,3459812
+93421,Laura Rodriguez,3456273
+95234,Julian Murillo,3124586
