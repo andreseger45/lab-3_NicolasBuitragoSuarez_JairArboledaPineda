@@ -33,6 +33,7 @@ public class VerLibros extends javax.swing.JDialog {
         tblVerLibros = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Libros registrados");
 
         tblVerLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -52,7 +53,10 @@ public class VerLibros extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblVerLibros);
         if (tblVerLibros.getColumnModel().getColumnCount() > 0) {
-            tblVerLibros.getColumnModel().getColumn(0).setMaxWidth(70);
+            tblVerLibros.getColumnModel().getColumn(0).setMaxWidth(55);
+            tblVerLibros.getColumnModel().getColumn(2).setMinWidth(100);
+            tblVerLibros.getColumnModel().getColumn(2).setMaxWidth(150);
+            tblVerLibros.getColumnModel().getColumn(3).setMaxWidth(70);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -61,15 +65,15 @@ public class VerLibros extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
