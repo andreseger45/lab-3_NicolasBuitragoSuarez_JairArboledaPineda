@@ -17,7 +17,7 @@ public class VerLibros extends javax.swing.JDialog {
     public VerLibros(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        tblVerLibros.setDefaultRenderer (Object.class, new FormatoTabla());
     }
 
     /**

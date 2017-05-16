@@ -5,7 +5,6 @@
  */
 package lab.pkg3_nicolasbuitragosuarez_jairarboledapineda;
 
-import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
