@@ -44,8 +44,13 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Biblioteca");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/library-icon-29614.png"))); // NOI18N
 
@@ -57,6 +62,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-user.png"))); // NOI18N
         jMenuItem1.setText("Añadir afiliado");
+        jMenuItem1.setToolTipText("Presiona para añadir un nuevo afiliado.");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -66,6 +72,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search-user.png"))); // NOI18N
         jMenuItem7.setText("Ver afiliados registrados");
+        jMenuItem7.setToolTipText("Presiona para ver los afiliados que hasta el momento se encuentran afiliados.");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -83,6 +90,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/books-add.png"))); // NOI18N
         jMenuItem2.setText("Añadir libro");
+        jMenuItem2.setToolTipText("Presiona para añadir un nuevo libro.");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -92,6 +100,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/book-search.png"))); // NOI18N
         jMenuItem8.setText("Ver libros registrados");
+        jMenuItem8.setToolTipText("Presiona para ver los libros registrados hasta el momento.");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -101,6 +110,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/books.png"))); // NOI18N
         jMenuItem4.setText("Prestar libro");
+        jMenuItem4.setToolTipText("Presiona para prestar un libro.");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -110,6 +120,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/books-get.png"))); // NOI18N
         jMenuItem5.setText("Entregar libro");
+        jMenuItem5.setToolTipText("Presiona para entregar un libro");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -119,6 +130,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/books-multa.png"))); // NOI18N
         jMenuItem6.setText("Libros con fecha expirada");
+        jMenuItem6.setToolTipText("Presiona para ver los libros que hasta el momento se encuentran con multa");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -195,6 +207,11 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         dm.verLibros();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        System.out.println("Saliendo");
+        dm.actualizar();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -1,0 +1,14 @@
+Codigo , Titulo , Autor , Fecha dev. , cod. Afiliado
+1234,Exodo,Leon Uris,08/05/2017,82257
+5678,Rayuela,Julio Cortazar,06/04/2017,92258
+3101,El mundo y sus demonios,Carl Sagan
+9287,El principe,Nicolas Maquiavelo,10/05/2017,82835
+2137,Odisea,Homero,18/05/2017,92259
+4563,Inferno,Dante Alighieri
+5643,Todos los nombres,Jose Saramago
+2735,El nombre de la rosa,Umberto Eco,18/05/2017,92259
+3621,La Metamorfosis,Franz Kafka
+6521,1984,George Orwell
+6523,El Extranjero,Albert Camus,25/01/2017,82257
+4321,Edipo Rey,Sofocles
+1298,Dracula,Bram Stoker,13/05/2017,93421

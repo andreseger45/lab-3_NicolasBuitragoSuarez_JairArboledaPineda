@@ -25,7 +25,7 @@ public class Libro {
         this.fechaDevolucion = new Fecha("0/0/0");
         this.codigoAfiliado = -1;
     }
-
+   
     public int getCodigo() {
         return codigo;
     }
