@@ -15,6 +15,7 @@
                   <Image iconType="3" name="/Imagenes/add-user.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir afiliado"/>
+                <Property name="toolTipText" type="java.lang.String" value="Presiona para a&#xf1;adir un nuevo afiliado."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -26,6 +27,7 @@
                   <Image iconType="3" name="/Imagenes/search-user.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ver afiliados registrados"/>
+                <Property name="toolTipText" type="java.lang.String" value="Presiona para ver los afiliados que hasta el momento se encuentran afiliados."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
@@ -52,6 +54,7 @@
                   <Image iconType="3" name="/Imagenes/books-add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir libro"/>
+                <Property name="toolTipText" type="java.lang.String" value="Presiona para a&#xf1;adir un nuevo libro."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
@@ -63,6 +66,7 @@
                   <Image iconType="3" name="/Imagenes/book-search.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ver libros registrados"/>
+                <Property name="toolTipText" type="java.lang.String" value="Presiona para ver los libros registrados hasta el momento."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ActionPerformed"/>
@@ -74,6 +78,7 @@
                   <Image iconType="3" name="/Imagenes/books.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Prestar libro"/>
+                <Property name="toolTipText" type="java.lang.String" value="Presiona para prestar un libro."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
@@ -85,6 +90,7 @@
                   <Image iconType="3" name="/Imagenes/books-get.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Entregar libro"/>
+                <Property name="toolTipText" type="java.lang.String" value="Presiona para entregar un libro"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
@@ -96,6 +102,7 @@
                   <Image iconType="3" name="/Imagenes/books-multa.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Libros con fecha expirada"/>
+                <Property name="toolTipText" type="java.lang.String" value="Presiona para ver los libros que hasta el momento se encuentran con multa"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
